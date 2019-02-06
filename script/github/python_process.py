@@ -8,7 +8,7 @@ import util
 import glob
 import argparse
 
-data_dir = "../../dataset"
+data_dir = "../../dataset/"
 original_path = data_dir + "original/"
 processed_path = data_dir + "processed/"
 train_path = data_dir + "train/"
