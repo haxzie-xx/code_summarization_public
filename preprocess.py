@@ -44,6 +44,7 @@ def makeData(which, srcFile, tgtFile, srcDicts, tgtDicts):
     code_sentences, comment_sentences = [], []
     sizes = []
     ignored, exceps = 0, 0
+    count = 1
 
     print('Processing %s & %s ...' % (srcFile, tgtFile))
     srcF = codecs.open(srcFile, 'r', 'utf-8', errors='ignore')
@@ -52,7 +53,8 @@ def makeData(which, srcFile, tgtFile, srcDicts, tgtDicts):
     while True:
         sline = srcF.readline().strip()
         tline = tgtF.readline().strip()
-
+        count += 1
+        print("Reading: ",count,"/5000")
         # source or target does not have same number of lines
         if sline == '' or tline == '':
             print('WARNING: src and tgt do not have the same # of sentences')
@@ -87,7 +89,7 @@ def makeData(which, srcFile, tgtFile, srcDicts, tgtDicts):
                 src += [srcDicts.convertToIdx(srcLine, Constants.UNK_WORD)]
                 tgt += [tgtDicts.convertToIdx(tgtLine, Constants.UNK_WORD, eosWord=Constants.EOS_WORD)]
                 sizes += [len(src)]
-                print('Added: '+str(trees))
+                #print('Added: '+str(trees))
             except Exception as e:
                 print('Exception: ', e)
                 print(sline)
