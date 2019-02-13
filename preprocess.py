@@ -9,6 +9,7 @@ import sys
 from lib.data.Tree import *
 import re
 import gensim
+import time
 # from .Dict import Dict
 def get_opt():
     parser = argparse.ArgumentParser(description='preprocess.py')
@@ -86,12 +87,13 @@ def makeData(which, srcFile, tgtFile, srcDicts, tgtDicts):
                 src += [srcDicts.convertToIdx(srcLine, Constants.UNK_WORD)]
                 tgt += [tgtDicts.convertToIdx(tgtLine, Constants.UNK_WORD, eosWord=Constants.EOS_WORD)]
                 sizes += [len(src)]
+                print('Added: '+str(trees))
             except Exception as e:
                 print('Exception: ', e)
                 print(sline)
                 exceps += 1
         else:
-            print('Too long')
+            print('Too long: total ignored -> '+str(ignored))
             ignored += 1
 
     srcF.close()

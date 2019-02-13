@@ -87,6 +87,8 @@ class Dict(object):
         if size >= self.size():
             return self
 
+        print("Print size: "+str(size))
+
         # Only keep the `size` most frequent entries.
         freq = torch.Tensor(
                 [self.frequencies[i] for i in range(len(self.frequencies))])
@@ -99,7 +101,8 @@ class Dict(object):
         for i in self.special:
             newDict.addSpecial(self.idxToLabel[i])
 
-        for i in idx[:size]:
+
+        for i in idx.numpy()[:size]:
             newDict.add(self.idxToLabel[i])
 
         return newDict

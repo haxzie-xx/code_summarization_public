@@ -8,7 +8,7 @@ hostname = 'ccnt-ubuntu'
 if hostname == 'ccnt-ubuntu':
     print(hostname)
     def preprocess():
-        log = './log/log.preprocess'
+        log = 'log/log.preprocess'
         if os.path.exists(log):
             os.system("rm -rf %s" % log)
 
@@ -25,7 +25,7 @@ if hostname == 'ccnt-ubuntu':
               '-test_src ./dataset/train/test0.60.20.2.code ' \
               '-test_tgt ./dataset/train/test0.60.20.2.comment ' \
               '-save_data ./dataset/train/processed_all ' \
-              '> ./log/log.preprocess'
+              #'> ./log/log.preprocess'
         print(run)
         a = os.system(run)
         if a == 0:
