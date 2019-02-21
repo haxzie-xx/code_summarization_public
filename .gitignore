@@ -4,3 +4,4 @@ venv/
 *.comment
 */*.pyc
 *.pyc
+processed_all*

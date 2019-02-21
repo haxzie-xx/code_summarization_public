@@ -55,7 +55,7 @@ def makeData(which, srcFile, tgtFile, srcDicts, tgtDicts):
         tline = tgtF.readline().strip()
         count += 1
         print("Reading: ",count,"/5000")
-        if (count > 5000):
+        if (count >= 5000):
             break
         # source or target does not have same number of lines
         if sline == '' or tline == '':
