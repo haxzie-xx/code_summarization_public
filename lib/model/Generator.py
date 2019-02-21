@@ -20,7 +20,7 @@ class BaseGenerator(nn.Module):
 
         loss = criterion(logits, targets.contiguous().view(-1), weights.contiguous().view(-1))
         loss.div(normalizer).backward()
-        loss = loss.item()
+        loss = loss.data[0]
 
         if outputs.grad is None:
             grad_output = torch.zeros(outputs.size())
