@@ -14,7 +14,17 @@ from torch.autograd import Variable
 import random
 from lib.data.Tree import *
 import time
-
+import torch._utils
+try:
+    torch._utils._rebuild_tensor_v2
+except AttributeError:
+    def _rebuild_tensor_v2(storage, storage_offset, size, stride, requires_grad, backward_hooks):
+        tensor = torch._utils._rebuild_tensor(storage, storage_offset, size, stride)
+        tensor.requires_grad = requires_grad
+        tensor._backward_hooks = backward_hooks
+        return tensor
+    torch._utils._rebuild_tensor_v2 = _rebuild_tensor_v2
+    
 def get_opt():
     parser = argparse.ArgumentParser(description='a2c-train.py')
     # Data options
